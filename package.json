@@ -1,0 +1,31 @@
+{
+  "name": "real-time-web-2122",
+  "version": "1.0.0",
+  "description": "- [Synopsis](#synopsis)\r - [Description](#description)\r - [Communication](#communication)\r - [Goals](#goals)\r - [Grading](#grading)\r - [Programme](#programme)",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KoenHaagsma/real-time-web-2122.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/KoenHaagsma/real-time-web-2122/issues"
+  },
+  "homepage": "https://github.com/KoenHaagsma/real-time-web-2122#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "nodemon": "^2.0.15",
+    "path": "^0.12.7",
+    "socket.io": "^4.4.1"
+  }
+}
