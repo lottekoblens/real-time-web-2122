@@ -17,6 +17,8 @@
 
 ## Live demo
 
+[Live demo](https://chat-people-socket.herokuapp.com/)
+
 ## Assignment
 
 During this course you will learn how to build a real-time application. You will learn techniques to setup an open connection between the client and the server. This will enable you to send data in real-time both ways, at the same time.
