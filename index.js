@@ -34,14 +34,13 @@ io.on('connection', (socket) => {
 
     socket.on('send-nickname', (nickname) => {
         socket.nickname = nickname;
-        socket.emit('send-nickname', nickname);
+        io.emit('send-nickname', {
+            nickname: socket.nickname
+        });
     });
 
     socket.on('chat-message', (msg) => {
-        io.emit('chat-message', {
-            msg,
-            nickname: socket.nickname
-        });
+        io.emit('chat-message', msg);
     });
 });
 
