@@ -1,14 +1,13 @@
 # Real Time Web
 
 ## Table of contents
-- [Human Centered Design](#human-centered-design)
+- [Real Time Web](#real-time-web)
   - [Table of contents](#table-of-contents)
   - [Concept](#concept)
   - [Live demo](#live-demo)
   - [Assignment](#assignment)
-    - [Ontwerpen met en voor echte mensen](#ontwerpen-met-en-voor-echte-mensen)
-    - [Leerdoelen](#leerdoelen)
-  - [Rubric](#rubric)
+    - [Goals](#goals)
+    - [Grading](#grading)
   - [Features](#features)
   - [Installation](#installation)
   - [Wishlist](#wishlist)
