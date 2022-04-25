@@ -4,17 +4,6 @@ const nicknameForm = document.getElementById('nickname');
 const input = document.getElementById('input');
 const nicknameInput = document.getElementById('nickname-input');
 
-
-// if (window.location.pathname === '/') {
-//     nicknameForm.addEventListener('submit', (event) => {
-//         if (nicknameInput.value) {
-//             nickname = nicknameInput.value
-//             socket.emit('send-nickname', nickname);
-//             nicknameInput.value = '';
-//         }
-//     });
-// }
-
 if (window.location.pathname === '/chat') {
 
     const username = new URLSearchParams(window.location.search).get('nickname')
@@ -56,3 +45,15 @@ if (window.location.pathname === '/chat') {
     });
 
 }
+
+const getData = () => {
+    // API parameters to send with fetch
+    const endpoint = 'https://api.themoviedb.org/3/movie/top_rated?',
+        key = process.env.KEY,
+        language = 'en-US',
+        page = '1',
+        region = 'GB';
+    const url = `${endpoint}api_key=${key}&language=${language}&page=${page}&region=${region}`;
+}
+
+// https://api.themoviedb.org/3/movie/top_rated?api_key=14b27019244559940e47860f2ebee592&language=en-US&page=1&region=GB

@@ -12,6 +12,18 @@ app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 
+let sortedData;
+
+const randomSortedMovieData = async () => {
+    // fetching data from api
+    const movieData = await getData();
+
+    // randomize order in movieData array
+    const sortedMovies = movieData.results.sort(() => .5 - Math.random());
+    sortedData = sortedMovies;
+    return sortedData;
+}
+
 app.get('/', (req, res) => {
     res.render('username');
 });
