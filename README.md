@@ -24,7 +24,7 @@ At first we had to think of multiple concepts and made some scetches as you can 
 Then I decided that I wanted to keep working on concept two. I want people to guess which movie it is based on an image. 
 The user can guess by typing in the right answer in the chat. The person who guesses it first gets the points.
 
-<img src="/public/images/concept.jpg.jpg" width="600">
+<img src="/public/images/concept.jpg" width="600">
 
 ## Live demo
 
