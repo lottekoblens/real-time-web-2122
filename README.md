@@ -15,6 +15,12 @@
 
 ## Concept
 
+At first we had to think of multiple concepts and made some scetches as you can see below.
+
+<img src="/public/images/Schets1.jpg" width="600">
+<img src="/public/images/Schets2.jpg" width="600">
+<img src="/public/images/Schets3.jpg" width="600">
+
 ## Live demo
 
 [Live demo](https://chat-people-socket.herokuapp.com/)
