@@ -21,6 +21,9 @@ At first we had to think of multiple concepts and made some scetches as you can 
 <img src="/public/images/Schets2.jpg" width="600">
 <img src="/public/images/Schets3.jpg" width="600">
 
+Then I decided that I wanted to keep working on concept two. I want people to guess which movie it is based on an image. 
+The user can guess by typing in the right answer in the chat. The person who guesses it first gets the points.
+
 ## Live demo
 
 [Live demo](https://chat-people-socket.herokuapp.com/)
