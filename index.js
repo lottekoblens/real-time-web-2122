@@ -7,37 +7,62 @@ const {
     Server
 } = require('socket.io');
 const io = new Server(server);
+const fetch = require('node-fetch');
+
 
 app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
 
-let sortedData;
-
-const randomSortedMovieData = async () => {
-    // fetching data from api
-    const movieData = await getData();
-
-    // randomize order in movieData array
-    const sortedMovies = movieData.results.sort(() => .5 - Math.random());
-    sortedData = sortedMovies;
-    return sortedData;
-}
-
 app.get('/', (req, res) => {
     res.render('username');
 });
 
-app.get('/chat', (req, res) => {
+app.get('/game', async (req, res) => {
+    // API parameters
+    const endpoint = 'https://api.themoviedb.org/3/movie/top_rated?',
+        key = process.env.KEY,
+        language = 'en-US',
+        pageOne = '1',
+        pageTwo = '2',
+        region = 'GB';
+    const urlOne = `${endpoint}api_key=${key}&language=${language}&page=${pageOne}&region=${region}`;
+    const urlTwo = `${endpoint}api_key=${key}&language=${language}&page=${pageTwo}&region=${region}`;
+
+    let data = [];
+
+    // fetch
+    await fetch(urlOne)
+        .then((res) => res.json())
+        .then((dataPage) => {
+            dataOne = dataPage.results
+            data.push(dataOne)
+            console.log(dataOne)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    await fetch(urlTwo)
+        .then((res) => res.json())
+        .then((dataPage) => {
+            dataTwo = dataPage.results
+            data.push(dataTwo)
+            console.log(dataTwo)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+
+    console.log(data)
+
+    // get nickname of user
     const nickname = req.query.nickname
-    // console.log(nickname)
-    res.render('chat', {
+    res.render('game', {
         nickname
     });
 });
 
 io.on('connection', (socket) => {
-    // console.log(socket.nickname, 'lol')
     io.emit('connected', 'a user has connected');
 
     socket.on('disconnect', () => {

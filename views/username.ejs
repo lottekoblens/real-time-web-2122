@@ -6,10 +6,19 @@
 </head>
 
 <body>
-    <ul id="messages"></ul>
-    <form method="GET" action="/chat">
-        <input name="nickname" id="nickname-input" type="text" autocomplete="off" /><button>Set nickname</button>
-    </form>
+    <main class="home">
+        <section>
+            <h2>Hey you! How nice that you want to play Quess The Movie!</h2>
+            <p>Before you can play, please enter your nickname.</p>
+        </section>
+        <section>
+            <ul id="messages"></ul>
+            <form method="GET" action="/game">
+                <input name="nickname" id="nickname-input" type="text" autocomplete="off" /><button>Set
+                    nickname</button>
+            </form>
+        </section>
+    </main>
 </body>
 
 </html>
