@@ -33,7 +33,7 @@ app.get('/game', async (req, res) => {
 
     let data = [];
     let user = [];
-    let round = 0;
+    let game = 0;
 
     // fetch
     await fetch(urlOne)
@@ -56,7 +56,7 @@ app.get('/game', async (req, res) => {
         })
 
     const randomizeData = () => {
-        let randomizedMovies = data[Math.floor(Math.random() * data.length)];
+        let randomizedMovies = data[Math.floor(Math.random() * data.length)]; // source https://stackoverflow.com/questions/37167264/javascript-output-random-object-from-array-of-objects
         randomizedData = randomizedMovies
         return randomizedData
     }
@@ -77,8 +77,8 @@ app.get('/game', async (req, res) => {
         })
 
         let movie = {
-            img: randomizedData[round].backdrop_path,
-            description: randomizedData[round].overview
+            img: randomizedData[game].backdrop_path,
+            description: randomizedData[game].overview
         }
 
         io.emit('movie', movie);
@@ -96,8 +96,18 @@ app.get('/game', async (req, res) => {
 
         socket.on('chat-message', (msg) => {
             io.emit('chat-message', msg);
-            if (msg.msg.toLowerCase().includes(randomizedData[round].original_title.toLowerCase())) {
-                console.log('yeahh')
+            if (msg.msg.toLowerCase().includes(randomizedData[game].original_title.toLowerCase())) {
+                const rightUser = msg.nickname;
+                msg.nickname = "Computer"
+                msg.msg = `Yeahhhhh ${rightUser} guessed it right!`;
+                io.emit('chat-message', msg);
+                game = game + 1
+                console.log(game)
+                movie = {
+                    img: randomizedData[game].backdrop_path,
+                    description: randomizedData[game].overview
+                }
+                io.emit('movie', movie)
             }
         });
     });
