@@ -19,6 +19,10 @@ if (window.location.pathname === '/game') {
 
     console.log(username);
 
+    socket.emit('connected', {
+        nickname: username
+    });
+
 
     socket.on('chat-message', (msg) => {
         const item = document.createElement('li');
@@ -28,12 +32,19 @@ if (window.location.pathname === '/game') {
         messages.scrollTop = messages.scrollHeight;
     });
 
-    socket.on('connected', (msg) => {
+    socket.on('connected', (nickname) => {
         const item = document.createElement('li');
-        item.textContent = msg;
+        item.textContent = `${nickname} has connected`
         messages.appendChild(item);
         messages.scrollTop = messages.scrollHeight;
     });
+
+    socket.on('movie', (movie) => {
+        const img = document.getElementById('movieImg')
+        const description = document.getElementById('movieDescription')
+        img.src = `https://image.tmdb.org/t/p/w500/${movie.img}`
+        description.textContent = `${movie.description}`
+    })
 
     socket.on('disconnected', (msg) => {
         const item = document.createElement('li');

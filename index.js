@@ -10,6 +10,8 @@ const io = new Server(server);
 const fetch = require('node-fetch');
 
 
+let randomizedData;
+
 app.set('view engine', 'ejs');
 
 app.use(express.static(__dirname + '/public'));
@@ -25,11 +27,13 @@ app.get('/game', async (req, res) => {
         language = 'en-US',
         pageOne = '1',
         pageTwo = '2',
-        region = 'GB';
+        region = 'NL';
     const urlOne = `${endpoint}api_key=${key}&language=${language}&page=${pageOne}&region=${region}`;
     const urlTwo = `${endpoint}api_key=${key}&language=${language}&page=${pageTwo}&region=${region}`;
 
     let data = [];
+    let user = [];
+    let round = 0;
 
     // fetch
     await fetch(urlOne)
@@ -37,7 +41,6 @@ app.get('/game', async (req, res) => {
         .then((dataPage) => {
             dataOne = dataPage.results
             data.push(dataOne)
-            console.log(dataOne)
         })
         .catch(err => {
             console.log(err)
@@ -47,13 +50,58 @@ app.get('/game', async (req, res) => {
         .then((dataPage) => {
             dataTwo = dataPage.results
             data.push(dataTwo)
-            console.log(dataTwo)
         })
         .catch(err => {
             console.log(err)
         })
 
-    console.log(data)
+    const randomizeData = () => {
+        let randomizedMovies = data[Math.floor(Math.random() * data.length)];
+        randomizedData = randomizedMovies
+        return randomizedData
+    }
+    randomizedData = randomizeData()
+    console.log(randomizedData)
+
+    io.on('connection', (socket) => {
+
+        socket.on('connected', () => {
+            io.emit('connected', nickname);
+
+            user.push({
+                nickname,
+                id: socket.id,
+                score: 0
+            })
+            console.log(user)
+        })
+
+        let movie = {
+            img: randomizedData[round].backdrop_path,
+            description: randomizedData[round].overview
+        }
+
+        io.emit('movie', movie);
+
+        socket.on('disconnect', () => {
+            io.emit('disconnected', 'a user has disconnected');
+        });
+
+        socket.on('send-nickname', (nickname) => {
+            socket.nickname = nickname;
+            io.emit('send-nickname', {
+                nickname: socket.nickname
+            });
+        });
+
+        socket.on('chat-message', (msg) => {
+            io.emit('chat-message', msg);
+            if (msg.msg.toLowerCase().includes(randomizedData[round].original_title.toLowerCase())) {
+                console.log('yeahh')
+            }
+        });
+    });
+
 
     // get nickname of user
     const nickname = req.query.nickname
@@ -62,24 +110,6 @@ app.get('/game', async (req, res) => {
     });
 });
 
-io.on('connection', (socket) => {
-    io.emit('connected', 'a user has connected');
-
-    socket.on('disconnect', () => {
-        io.emit('disconnected', 'a user has disconnected');
-    });
-
-    socket.on('send-nickname', (nickname) => {
-        socket.nickname = nickname;
-        io.emit('send-nickname', {
-            nickname: socket.nickname
-        });
-    });
-
-    socket.on('chat-message', (msg) => {
-        io.emit('chat-message', msg);
-    });
-});
 
 server.listen(process.env.PORT, () => {
     console.log(`listening on *:${process.env.PORT}`);
