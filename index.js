@@ -11,6 +11,7 @@ const fetch = require('node-fetch');
 
 
 let randomizedData;
+let filteredData;
 
 app.set('view engine', 'ejs');
 
@@ -27,9 +28,11 @@ app.get('/game', async (req, res) => {
         language = 'en-US',
         pageOne = '1',
         pageTwo = '2',
+        pageThree = '3',
         region = 'NL';
     const urlOne = `${endpoint}api_key=${key}&language=${language}&page=${pageOne}&region=${region}`;
     const urlTwo = `${endpoint}api_key=${key}&language=${language}&page=${pageTwo}&region=${region}`;
+    const urlThree = `${endpoint}api_key=${key}&language=${language}&page=${pageThree}&region=${region}`;
 
     let data = [];
     let user = [];
@@ -40,7 +43,8 @@ app.get('/game', async (req, res) => {
         .then((res) => res.json())
         .then((dataPage) => {
             dataOne = dataPage.results
-            data.push(dataOne)
+            const filteredDataOne = dataOne.filter(movie => movie.original_language === 'en')
+            data.push(filteredDataOne)
         })
         .catch(err => {
             console.log(err)
@@ -49,7 +53,18 @@ app.get('/game', async (req, res) => {
         .then((res) => res.json())
         .then((dataPage) => {
             dataTwo = dataPage.results
-            data.push(dataTwo)
+            const filteredDataTwo = dataTwo.filter(movie => movie.original_language === 'en')
+            data.push(filteredDataTwo)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+    await fetch(urlThree)
+        .then((res) => res.json())
+        .then((dataPage) => {
+            dataThree = dataPage.results
+            const filteredDataThree = dataThree.filter(movie => movie.original_language === 'en')
+            data.push(filteredDataThree)
         })
         .catch(err => {
             console.log(err)
