@@ -3,9 +3,13 @@
 ## Table of contents
 - [Real Time Web](#real-time-web)
   - [Table of contents](#table-of-contents)
-  - [Concept](#concept)
-    - [Data modelling](#data-modelling)
   - [Live demo](#live-demo)
+  - [Concept](#concept)
+  - [External data source](#external-data-source)
+    - [The movieDB API](#the-moviedb-api)
+    - [Data modelling](#data-modelling)
+  - [Proof of concept 2: spike solution](#proof-of-concept-2-spike-solution)
+  - [Data lifecycle](#data-lifecycle)
   - [Assignment](#assignment)
     - [Goals](#goals)
     - [Grading](#grading)
@@ -13,6 +17,10 @@
   - [Installation](#installation)
   - [Wishlist](#wishlist)
   - [License](#license)
+
+## Live demo
+
+[Live demo](https://chat-people-socket.herokuapp.com/)
 
 ## Concept
 
@@ -27,13 +35,26 @@ The user can guess by typing in the right answer in the chat. The person who gue
 
 <img src="/public/images/concept.jpg" width="650">
 
+## External data source
+
+For this application I needed the data of movies. So I started looking for an API that has information about popular movies.
+
+### The movieDB API 
+From this API I get the most popular movies. The properties I use are: original_title, original_language, backdrop_path and overview. You can see this also in the section 'Data modeling'.
+
 ### Data modelling
 
 <img src="/public/images/datamodelling.png" width="650">
 
-## Live demo
+## Proof of concept 2: spike solution
 
-[Live demo](https://chat-people-socket.herokuapp.com/)
+I started coding and thought about the _spike solution_. This means that I keep the amount of data traffic in mind. I don't want my app to crash because there is too much data traffic. 
+
+I could prevent this by, for example, setting a character limit, so that people can't send an endless message that could cause the app to crash. 
+
+## Data lifecycle
+
+
 
 ## Assignment
 
@@ -69,7 +90,14 @@ Your efforts will be graded using a single point rubric (see below). You will ha
 
 `npm install`
 
-3. Run the project by putting this in the terminal:
+3. Get your API key for the MovieDB API
+  Read how to get one [here](https://kb.synology.com/en-my/DSM/tutorial/How_to_apply_for_a_personal_API_key_to_get_video_info)
+
+4. Set your API key in the .env file
+   You should do it like this:
+   ```KEY=yourAPIkey```
+
+5. Run the project by putting this in the terminal:
 
 `npm start`
 

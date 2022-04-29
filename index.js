@@ -84,7 +84,7 @@ app.get('/game', async (req, res) => {
             io.emit('connected', nickname);
 
             user.push({
-                nickname,
+                nickname: nickname,
                 id: socket.id,
                 score: 0
             })
