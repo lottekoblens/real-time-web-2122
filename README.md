@@ -91,8 +91,8 @@ Your efforts will be graded using a single point rubric (see below). You will ha
 `npm install`
 
 3. Get your API key for the MovieDB API
-  
-  Read how to get one [here](https://kb.synology.com/en-my/DSM/tutorial/How_to_apply_for_a_personal_API_key_to_get_video_info)
+   
+   Read how to get one [here](https://kb.synology.com/en-my/DSM/tutorial/How_to_apply_for_a_personal_API_key_to_get_video_info)
 
 4. Set your API key in the .env file
    
