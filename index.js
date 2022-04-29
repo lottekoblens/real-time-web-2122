@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
 app.get('/game', async (req, res) => {
     // API parameters
     const endpoint = 'https://api.themoviedb.org/3/movie/top_rated?',
-        key = process.env.KEY,
+        key = process.env.API_KEY,
         language = 'en-US',
         pageOne = '1',
         pageTwo = '2',
