@@ -7,7 +7,7 @@ if (window.location.pathname === '/game') {
     const username = new URLSearchParams(window.location.search).get('nickname')
 
     chatForm.addEventListener('submit', (event) => {
-        event.preventDefault();
+        event.preventDefault(); // prevents the default of refreshing the page
         if (input.value) {
             socket.emit('chat-message', {
                 msg: input.value,
@@ -17,17 +17,18 @@ if (window.location.pathname === '/game') {
         }
     });
 
-    console.log(username);
+    // console.log(username);
 
     socket.emit('connected', {
         nickname: username
     });
 
+    socket.emit('userconnect', username);
 
     socket.on('chat-message', (msg) => {
         const item = document.createElement('li');
         console.log(msg);
-        item.textContent = `${msg.nickname}: ${msg.msg}`;
+        item.textContent = `${msg.nickname}: ${msg.msg}`; // show the username and the message of the user in the chat
         messages.appendChild(item);
         messages.scrollTop = messages.scrollHeight;
     });
@@ -54,5 +55,3 @@ if (window.location.pathname === '/game') {
     });
 
 }
-
-// https://api.themoviedb.org/3/movie/top_rated?api_key=14b27019244559940e47860f2ebee592&language=en-US&page=1&region=GB
