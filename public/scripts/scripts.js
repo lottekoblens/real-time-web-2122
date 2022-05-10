@@ -71,7 +71,10 @@ if (window.location.pathname === '/game') {
     });
 
     socket.on('disconnected', (nickname) => {
-        console.log(nickname)
+        if (nickname === 'transport close') {
+            const item = document.createElement('li');
+            item.textContent = `a user has disconnected`;
+        }
         const item = document.createElement('li');
         item.textContent = `${nickname.nickname} has disconnected`;
         messages.appendChild(item);
