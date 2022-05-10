@@ -65,7 +65,7 @@ if (window.location.pathname === '/game') {
         // then add users with their score
         users.forEach(user => {
             const userScores = document.createElement('li');
-            userScores.textContent = `${user.nickname} = ${user.score} points`
+            userScores.textContent = `${user.nickname}: ${user.score} points`
             score.appendChild(userScores);
         })
     });
