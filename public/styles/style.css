@@ -105,6 +105,24 @@ section:nth-of-type(2)>form>button:focus {
     cursor: pointer;
 }
 
+.gamePage section:nth-of-type(3) {
+    background-color: hotpink;
+    position: absolute;
+    bottom: 0;
+    text-align: left;
+}
+
+.gamePage section:nth-of-type(3)>h2 {
+    padding-left: 1.7em;
+}
+
+.gamePage section:nth-of-type(3)>ul {
+    padding-right: 2em;
+}
+
+.gamePage section:nth-of-type(3)>ul>li {
+    list-style-type: none;
+}
 
 /*      mobile screen       */
 @media screen and (max-width: 600px) {

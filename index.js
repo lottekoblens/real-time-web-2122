@@ -21,7 +21,7 @@ app.get('/', (req, res) => {
     res.render('username');
 });
 
-let user = [];
+let users = [];
 let game = 0;
 
 
@@ -94,37 +94,18 @@ app.get('/game', async (req, res) => {
 io.on('connection', (socket) => {
 
     socket.on('userconnect', (nickname) => {
-        console.log('user connected')
-        io.emit('userconnect', nickname);
+        io.emit('userconnect', {
+            nickname
+        });
 
-        user.push({
+        users.push({
             nickname: nickname,
             score: 0,
             id: socket.id
         });
-        console.log(user)
-
+        console.log(users)
+        io.emit('scoreboard', (users));
     })
-    // if (!(socket.id in user)) {
-
-    //     user[socket.id] = {
-    //         id: socket.id,
-    //         nickname: nickname,
-    //         score: 0
-    //     }
-    //     console.log(user);
-    // }
-
-    // socket.on('connected', () => {
-    //     io.emit('connected', nickname);
-
-    //     user.push({
-    //         nickname: nickname,
-    //         id: socket.id,
-    //         score: 0
-    //     })
-    //     console.log(user)
-    // })
 
     let movie = {
         img: randomizedData[game].backdrop_path, // get image of the movie
@@ -133,9 +114,20 @@ io.on('connection', (socket) => {
 
     io.emit('movie', movie);
 
-    socket.on('disconnect', () => {
-        io.emit('disconnected', 'a user has disconnected');
-        delete user[socket.id];
+    socket.on('disconnect', (nickname) => {
+
+        socket.nickname = nickname
+        delete users[socket.id];
+        users.forEach(user => {
+            if (user.id == socket.id) {
+                nickname = user.nickname;
+                users = users.filter(user => user.id != socket.id);
+            }
+        });
+        io.emit('disconnected', {
+            nickname
+        })
+        io.emit('scoreboard', (users));
     });
 
     socket.on('send-nickname', (nickname) => {
@@ -158,6 +150,13 @@ io.on('connection', (socket) => {
                 img: randomizedData[game].backdrop_path,
                 description: randomizedData[game].overview
             }
+            users.forEach(user => {
+                if (user.id == socket.id) {
+                    user.score = user.score + 10;
+                }
+            });
+
+            io.emit('scoreboard', (users));
             io.emit('movie', movie)
         }
     });
