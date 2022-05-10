@@ -1,5 +1,7 @@
 # Real Time Web
 
+<img src="/public/images/concept.png" width="650">
+
 ## Table of contents
 - [Real Time Web](#real-time-web)
   - [Table of contents](#table-of-contents)
