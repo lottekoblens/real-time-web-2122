@@ -10,6 +10,7 @@
     - [Data modelling](#data-modelling)
   - [Proof of concept 2: spike solution](#proof-of-concept-2-spike-solution)
   - [Data lifecycle](#data-lifecycle)
+  - [Data management](#data-management)
   - [Assignment](#assignment)
     - [Goals](#goals)
     - [Grading](#grading)
@@ -55,6 +56,42 @@ I could prevent this by, for example, setting a character limit, so that people 
 ## Data lifecycle
 
 <img src="/public/images/datalifecycle.png" width="650">
+
+## Data management
+
+For data management I use arrays. I save the data of the users in one array. It's saved like this:
+```js
+users.push({
+            nickname: nickname,
+            score: 0,
+            id: socket.id
+        });
+```
+
+I also save the data of the movies. I first filter the data of the movies by only getting the movies with English as the original language. I also deleted the properties that I don't use, so I have good cleaned data that I can use.
+
+```js
+let data = [];
+
+    // fetch
+    await fetch(urlOne)
+        .then((res) => res.json())
+        .then((dataPage) => {
+            dataOne = dataPage.results
+            const filteredDataThree = dataThree.filter(movie => movie.original_language === 'en')
+            const newDataThree = filteredDataThree.map(movie => {
+                return {
+                    title: movie.original_title,
+                    backdrop_path: movie.backdrop_path,
+                    overview: movie.overview,
+                }
+            })
+        })
+        .catch(err => {
+            console.log(err)
+        })
+```
+
 
 ## Assignment
 

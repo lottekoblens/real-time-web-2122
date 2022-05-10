@@ -37,15 +37,34 @@ const getData = async () => {
     const urlThree = `${endpoint}api_key=${key}&language=${language}&page=${pageThree}&region=${region}`;
     // need to use more urls to get more data, every url gets the data of a different page
 
+
+
+    const filterData = (data) => {
+        return Object.keys(data).map(movie => {
+            return {
+                backdrop_path: movie.backdrop_path,
+                overview: movie.overview,
+            }
+        });
+    }
     let data = [];
 
     // fetch
     await fetch(urlOne)
         .then((res) => res.json())
+        // .then((data) => filterData(data))
         .then((dataPage) => {
             dataOne = dataPage.results
             const filteredDataOne = dataOne.filter(movie => movie.original_language === 'en')
-            data.push(filteredDataOne)
+            const newDataOne = filteredDataOne.map(movie => {
+                return {
+                    title: movie.original_title,
+                    backdrop_path: movie.backdrop_path,
+                    overview: movie.overview,
+                }
+            })
+            // console.log(newDataOne, 'kwebfuyewfveufviueqwfyweqvyuewgyufgew')
+            data.push(newDataOne)
         })
         .catch(err => {
             console.log(err)
@@ -55,7 +74,14 @@ const getData = async () => {
         .then((dataPage) => {
             dataTwo = dataPage.results
             const filteredDataTwo = dataTwo.filter(movie => movie.original_language === 'en')
-            data.push(filteredDataTwo)
+            const newDataTwo = filteredDataTwo.map(movie => {
+                return {
+                    title: movie.original_title,
+                    backdrop_path: movie.backdrop_path,
+                    overview: movie.overview,
+                }
+            })
+            data.push(newDataTwo)
         })
         .catch(err => {
             console.log(err)
@@ -65,7 +91,14 @@ const getData = async () => {
         .then((dataPage) => {
             dataThree = dataPage.results
             const filteredDataThree = dataThree.filter(movie => movie.original_language === 'en')
-            data.push(filteredDataThree)
+            const newDataThree = filteredDataThree.map(movie => {
+                return {
+                    title: movie.original_title,
+                    backdrop_path: movie.backdrop_path,
+                    overview: movie.overview,
+                }
+            })
+            data.push(newDataThree)
         })
         .catch(err => {
             console.log(err)
@@ -77,8 +110,10 @@ const getData = async () => {
         return randomizedData
     }
     randomizedData = randomizeData()
-    // console.log(randomizedData)
+    console.log(randomizedData)
 }
+
+
 getData()
 
 app.get('/game', async (req, res) => {
@@ -138,7 +173,7 @@ io.on('connection', (socket) => {
 
     socket.on('chat-message', (msg) => {
         io.emit('chat-message', msg);
-        if (msg.msg.toLowerCase().includes(randomizedData[game].original_title.toLowerCase())) {
+        if (msg.msg.toLowerCase().includes(randomizedData[game].title.toLowerCase())) {
             const rightUser = msg.nickname;
             msg.nickname = ""
             msg.msg = `Yeahhhhh ${rightUser} guessed it right!`;
