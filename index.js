@@ -11,7 +11,6 @@ const fetch = require('node-fetch');
 
 
 let randomizedData;
-let filteredData;
 
 app.set('view engine', 'ejs');
 
@@ -141,7 +140,7 @@ io.on('connection', (socket) => {
         io.emit('chat-message', msg);
         if (msg.msg.toLowerCase().includes(randomizedData[game].original_title.toLowerCase())) {
             const rightUser = msg.nickname;
-            msg.nickname = "Computer"
+            msg.nickname = ""
             msg.msg = `Yeahhhhh ${rightUser} guessed it right!`;
             io.emit('chat-message', msg);
             game = game + 1

@@ -25,7 +25,6 @@ if (window.location.pathname === '/game') {
     socket.emit('userconnect', username);
 
     socket.on('userconnect', (username) => {
-        console.log(username.nickname)
         const item = document.createElement('li');
         item.textContent = `${username.nickname} has connected`
         messages.appendChild(item);
@@ -33,10 +32,12 @@ if (window.location.pathname === '/game') {
     });
 
     socket.on('chat-message', (msg) => {
-        const item = document.createElement('li');
-        console.log(msg);
-        item.textContent = `${msg.nickname}: ${msg.msg}`; // show the username and the message of the user in the chat
-        messages.appendChild(item);
+        const name = document.createElement('li');
+        const item = document.createElement('p')
+        name.textContent = `${msg.nickname}`
+        item.textContent = `${msg.msg}`; // show the username and the message of the user in the chat
+        messages.appendChild(name);
+        name.appendChild(item);
         messages.scrollTop = messages.scrollHeight;
     });
 
