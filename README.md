@@ -11,12 +11,12 @@
   - [Proof of concept 2: spike solution](#proof-of-concept-2-spike-solution)
   - [Data lifecycle](#data-lifecycle)
   - [Data management](#data-management)
-  - [Assignment](#assignment)
-    - [Goals](#goals)
-    - [Grading](#grading)
   - [Features](#features)
   - [Installation](#installation)
   - [Wishlist](#wishlist)
+  - [Assignment](#assignment)
+    - [Goals](#goals)
+    - [Grading](#grading)
   - [License](#license)
 
 ## Live demo
@@ -92,28 +92,6 @@ let data = [];
         })
 ```
 
-## Assignment
-
-During this course you will learn how to build a real-time application. You will learn techniques to setup an open connection between the client and the server. This will enable you to send data in real-time both ways, at the same time.
-
-### Goals
-After finishing this program you can:
-- _deal with real-time complexity;_
-- _handle real-time client-server interaction;_
-- _handle real-time data management;_
-- _handle multi-user support._
-
-### Grading
-Your efforts will be graded using a single point rubric (see below). You will have to pass the criterion (centre column) to pass the course. During the test you will be consulted and will be given feedback on things we think deficient and things we think are an improvement on the criterion.
-
-| Deficiency | Criterion | Improvement |
-|:--|:--|:--|
-|  | *Project* Your app is working and published on Heroku. Your project is thoroughly documented in the `README.md` file in your repository. Included are a description of the data-lifecycle, real-time events and external data source used by your app. |  |
-|  | *Complexity* You’ve implemented enough real-time functionality for us to test your comprehension of the subject. A lot of functionality is self-written. You are able to manipulate online examples live. |  |
-|  | *Client-server interaction* By interacting with the app, a user can influence the data model of the server in real time by directly modifying data OR by influencing API requests between server and source. The student has set up the data manipulations. |  |
-|  | *Data management* The server maintains a data model and each client is continuously updated with the correct data. |  |
-|  | *Multi-user support* Multiple clients can connect to the server. Interaction works as expected and is not dependent on the number of clients. You can explain how your app approaches this. |  |
-
 ## Features
 
 * Set a nickname
@@ -149,6 +127,28 @@ Due to a lack of time, there are a few things that I wanted to add but I couldn'
 * Create rooms
 * Add skip button
 * When the user message includes a part of the title, give the user feedback that they are close to the right answer
+
+## Assignment
+
+During this course you will learn how to build a real-time application. You will learn techniques to setup an open connection between the client and the server. This will enable you to send data in real-time both ways, at the same time.
+
+### Goals
+After finishing this program you can:
+- _deal with real-time complexity;_
+- _handle real-time client-server interaction;_
+- _handle real-time data management;_
+- _handle multi-user support._
+
+### Grading
+Your efforts will be graded using a single point rubric (see below). You will have to pass the criterion (centre column) to pass the course. During the test you will be consulted and will be given feedback on things we think deficient and things we think are an improvement on the criterion.
+
+| Deficiency | Criterion | Improvement |
+|:--|:--|:--|
+|  | *Project* Your app is working and published on Heroku. Your project is thoroughly documented in the `README.md` file in your repository. Included are a description of the data-lifecycle, real-time events and external data source used by your app. |  |
+|  | *Complexity* You’ve implemented enough real-time functionality for us to test your comprehension of the subject. A lot of functionality is self-written. You are able to manipulate online examples live. |  |
+|  | *Client-server interaction* By interacting with the app, a user can influence the data model of the server in real time by directly modifying data OR by influencing API requests between server and source. The student has set up the data manipulations. |  |
+|  | *Data management* The server maintains a data model and each client is continuously updated with the correct data. |  |
+|  | *Multi-user support* Multiple clients can connect to the server. Interaction works as expected and is not dependent on the number of clients. You can explain how your app approaches this. |  |
 
 ## License
 
