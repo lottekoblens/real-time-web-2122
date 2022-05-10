@@ -94,6 +94,7 @@ let data = [];
 
 ## Features
 
+* Play a game with other players
 * Set a nickname
 * Send a chat message
 * Get points when answer is guessed
