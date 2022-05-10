@@ -117,7 +117,11 @@ let data = [];
    You should do it like this:
    ```KEY=yourAPIkey```
 
-5. Run the project by putting this in the terminal:
+5. Add the PORT to the .env file like this:
+
+  ```PORT="4242"```
+
+6. Run the project by putting this in the terminal:
 
 `npm start`
 
