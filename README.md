@@ -92,7 +92,6 @@ let data = [];
         })
 ```
 
-
 ## Assignment
 
 During this course you will learn how to build a real-time application. You will learn techniques to setup an open connection between the client and the server. This will enable you to send data in real-time both ways, at the same time.
@@ -116,6 +115,10 @@ Your efforts will be graded using a single point rubric (see below). You will ha
 |  | *Multi-user support* Multiple clients can connect to the server. Interaction works as expected and is not dependent on the number of clients. You can explain how your app approaches this. |  |
 
 ## Features
+
+* Set a nickname
+* Send a chat message
+* Get points when answer is guessed
 
 ## Installation
 
@@ -141,6 +144,11 @@ Your efforts will be graded using a single point rubric (see below). You will ha
 `npm start`
 
 ## Wishlist
+Due to a lack of time, there are a few things that I wanted to add but I couldn't now
+
+* Create rooms
+* Add skip button
+* When the user message includes a part of the title, give the user feedback that they are close to the right answer
 
 ## License
 
