@@ -14,6 +14,12 @@
   - [Data lifecycle](#data-lifecycle)
   - [Data management](#data-management)
   - [Multi-user support](#multi-user-support)
+  - [Real time events](#real-time-events)
+    - [Connection](#connection)
+    - [Userconnect](#userconnect)
+    - [Chat-message](#chat-message)
+    - [Scoreboard](#scoreboard)
+    - [Disconnect](#disconnect)
   - [Features](#features)
   - [Installation](#installation)
   - [Wishlist](#wishlist)
@@ -98,6 +104,31 @@ let data = [];
 ## Multi-user support
 
 In socket.io krijg je als gebruiker al een socket ID toegewezen. En zodra de gebruiker op de site komt, stelt hij een nickname in. Alle gebruikers komen daarna in één room terecht (er zijn niet meerdere rooms). Alle users komen dus samen in een spel terecht. Alle users worden op de hoogte gesteld wanneer er een nieuwe gebruiker bij komt. En alle gebruikers krijgen alle berichten die in de chat worden gestuurd binnen.
+
+## Real time events
+
+### Connection
+
+The connection event will be called when a new user connects to the server. All the other events are stored in this event.
+
+### Userconnect
+
+The userconnect event is called when a new user connects to the server and filled in a user name on the first page. The user will be added to an array and is given a id (socket id), nickname and score (the score will be 0 in the beginning)
+
+### Chat-message
+
+The chat-message event is called multiple times:
+- When a user sends a chat message: the user sends a message and this will be displayed at all users
+- When a user joins the game: There will be a message in the chat that a user has connected
+- When a user guessed the right movie: The 'computer' sends a message that a user guessed the movie
+
+### Scoreboard
+
+This event is called when a user sends the right answer in the chat. And the user who gave the right answer will get points which will be displayed on the scoreboard.
+
+### Disconnect
+
+When a user disconnects a message will be send that the user is disconnected.
 
 ## Features
 
