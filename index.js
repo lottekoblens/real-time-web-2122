@@ -37,16 +37,6 @@ const getData = async () => {
     const urlThree = `${endpoint}api_key=${key}&language=${language}&page=${pageThree}&region=${region}`;
     // need to use more urls to get more data, every url gets the data of a different page
 
-
-
-    const filterData = (data) => {
-        return Object.keys(data).map(movie => {
-            return {
-                backdrop_path: movie.backdrop_path,
-                overview: movie.overview,
-            }
-        });
-    }
     let data = [];
 
     // fetch
@@ -164,12 +154,12 @@ io.on('connection', (socket) => {
         io.emit('scoreboard', (users));
     });
 
-    socket.on('send-nickname', (nickname) => {
-        socket.nickname = nickname;
-        io.emit('send-nickname', {
-            nickname: socket.nickname
-        });
-    });
+    // socket.on('send-nickname', (nickname) => {
+    //     socket.nickname = nickname;
+    //     io.emit('send-nickname', {
+    //         nickname: socket.nickname
+    //     });
+    // });
 
     socket.on('chat-message', (msg) => {
         io.emit('chat-message', msg);
