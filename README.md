@@ -13,6 +13,7 @@
   - [Proof of concept 2: spike solution](#proof-of-concept-2-spike-solution)
   - [Data lifecycle](#data-lifecycle)
   - [Data management](#data-management)
+  - [Multi-user support](#multi-user-support)
   - [Features](#features)
   - [Installation](#installation)
   - [Wishlist](#wishlist)
@@ -93,6 +94,10 @@ let data = [];
             console.log(err)
         })
 ```
+
+## Multi-user support
+
+In socket.io krijg je als gebruiker al een socket ID toegewezen. En zodra de gebruiker op de site komt, stelt hij een nickname in. Alle gebruikers komen daarna in één room terecht (er zijn niet meerdere rooms). Alle users komen dus samen in een spel terecht. Alle users worden op de hoogte gesteld wanneer er een nieuwe gebruiker bij komt. En alle gebruikers krijgen alle berichten die in de chat worden gestuurd binnen.
 
 ## Features
 
