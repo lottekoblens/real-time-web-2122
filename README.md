@@ -143,6 +143,7 @@ When a user disconnects a message will be send that the user is disconnected.
 * Get points when answer is guessed
 * Skip a movie
 
+
 ## Installation
 
 1. Clone this repository by putting this in your terminal:
