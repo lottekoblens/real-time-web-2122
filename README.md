@@ -1,6 +1,6 @@
 # Real Time Web
 
-<img src="/images/movie.gif" width="650">
+<img src="https://github.com/lottekoblens/real-time-web-2122/blob/main/public/images/movie.gif" width="650">
 
 ## Table of contents
 - [Real Time Web](#real-time-web)
