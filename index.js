@@ -145,12 +145,43 @@ io.on('connection', (socket) => {
         io.emit('scoreboard', (users)); // emit scoreboard when new user is connected
     })
 
-    let movie = {
-        img: randomizedData[game].backdrop_path, // get image of the movie
-        description: randomizedData[game].overview // get description of the movie
+    if (!randomizedData[game]) {
+        let movie = {
+            img: '/public/images/theend.png',
+            description: 'This is the end of the game!'
+        }
+        io.emit('movie', movie);
+    } else {
+        let movie = {
+            img: randomizedData[game].backdrop_path,
+            description: randomizedData[game].overview
+        }
+        io.emit('movie', movie);
     }
 
-    io.emit('movie', movie);
+    if (!randomizedData[game]) { // when there is no data, there are no more movies, so that is the end of the game
+        movie = {
+            img: '/images/theend.png',
+            description: 'This is the end of the game!'
+        }
+        io.emit('movie', movie);
+    } else {
+        imgSrc = randomizedData[game].backdrop_path; // when there is no image src, there should be an image which says no image available
+        if (!imgSrc) {
+            movie = {
+                img: `/images/no-image.png`,
+                description: randomizedData[game].overview
+            }
+            io.emit('movie', movie);
+        } else {
+            movie = {
+                img: `https://image.tmdb.org/t/p/w500/${imgSrc}`,
+                description: randomizedData[game].overview
+            }
+            io.emit('movie', movie);
+        }
+
+    }
 
     socket.on('disconnect', (nickname) => {
 
@@ -170,9 +201,24 @@ io.on('connection', (socket) => {
 
     socket.on('skip-movie', (msg) => {
         game = game + 1; // add one to game to go to next movie
-        movie = {
-            img: randomizedData[game].backdrop_path,
-            description: randomizedData[game].overview
+        if (!randomizedData[game]) { // when there is no data, there are no more movies, so that is the end of the game
+            movie = {
+                img: '/images/theend.png',
+                description: 'This is the end of the game!'
+            }
+        } else {
+            imgSrc = randomizedData[game].backdrop_path; // when there is no image src, there should be an image which says no image available
+            if (!imgSrc) {
+                movie = {
+                    img: `/images/no-image.png`,
+                    description: randomizedData[game].overview
+                }
+            } else {
+                movie = {
+                    img: `https://image.tmdb.org/t/p/w500/${imgSrc}`,
+                    description: randomizedData[game].overview
+                }
+            }
         }
         io.emit('skip-movie', msg)
         io.emit('movie', movie);

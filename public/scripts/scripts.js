@@ -52,7 +52,8 @@ if (window.location.pathname === '/game') {
     socket.on('movie', (movie) => {
         const img = document.getElementById('movieImg')
         const description = document.getElementById('movieDescription')
-        img.src = `https://image.tmdb.org/t/p/w500/${movie.img}`
+        img.src = `${movie.img}`
+        // img.src = `https://image.tmdb.org/t/p/w500/${movie.img}`
         description.textContent = `${movie.description}`
     })
 
