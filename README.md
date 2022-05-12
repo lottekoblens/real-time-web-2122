@@ -176,6 +176,7 @@ Due to a lack of time, there are a few things that I wanted to add but I couldn'
 
 * Create rooms
 * When the user message includes a part of the title, give the user feedback that they are close to the right answer
+* Store data of points from users in database
 
 ## Assignment
 
