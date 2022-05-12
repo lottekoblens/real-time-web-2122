@@ -1,6 +1,6 @@
 # Real Time Web
 
-<img src="/public/images/movieguess.gif" width="650">
+<img src="/images/movieguess.gif" width="650">
 
 ## Table of contents
 - [Real Time Web](#real-time-web)
