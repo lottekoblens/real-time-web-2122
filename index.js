@@ -164,6 +164,7 @@ io.on('connection', (socket) => {
             img: '/images/theend.png',
             description: 'This is the end of the game!'
         }
+        game = 0
         io.emit('movie', movie);
     } else {
         imgSrc = randomizedData[game].backdrop_path; // when there is no image src, there should be an image which says no image available
