@@ -31,10 +31,12 @@ const getData = async () => {
         pageOne = '1',
         pageTwo = '2',
         pageThree = '3',
+        pageFour = '4',
         region = 'NL';
     const urlOne = `${endpoint}api_key=${key}&language=${language}&page=${pageOne}&region=${region}`;
     const urlTwo = `${endpoint}api_key=${key}&language=${language}&page=${pageTwo}&region=${region}`;
     const urlThree = `${endpoint}api_key=${key}&language=${language}&page=${pageThree}&region=${region}`;
+    const urlFour = `${endpoint}api_key=${key}&language=${language}&page=${pageFour}&region=${region}`;
     // need to use more urls to get more data, every url gets the data of a different page
 
     let data = [];
@@ -53,7 +55,6 @@ const getData = async () => {
                     overview: movie.overview,
                 }
             })
-            // console.log(newDataOne, 'kwebfuyewfveufviueqwfyweqvyuewgyufgew')
             data.push(newDataOne)
         })
         .catch(err => {
@@ -93,6 +94,23 @@ const getData = async () => {
         .catch(err => {
             console.log(err)
         })
+    await fetch(urlFour)
+        .then((res) => res.json())
+        .then((dataPage) => {
+            dataFour = dataPage.results
+            const filteredDataFour = dataFour.filter(movie => movie.original_language === 'en')
+            const newDataFour = filteredDataFour.map(movie => {
+                return {
+                    title: movie.original_title,
+                    backdrop_path: movie.backdrop_path,
+                    overview: movie.overview,
+                }
+            })
+            data.push(newDataFour)
+        })
+        .catch(err => {
+            console.log(err)
+        })
 
     const randomizeData = () => {
         let randomizedMovies = data[Math.floor(Math.random() * data.length)]; // source https://stackoverflow.com/questions/37167264/javascript-output-random-object-from-array-of-objects
@@ -100,10 +118,7 @@ const getData = async () => {
         return randomizedData
     }
     randomizedData = randomizeData()
-    console.log(randomizedData)
 }
-
-
 getData()
 
 app.get('/game', async (req, res) => {
@@ -127,7 +142,6 @@ io.on('connection', (socket) => {
             score: 0,
             id: socket.id
         });
-        console.log(users)
         io.emit('scoreboard', (users));
     })
 
@@ -154,12 +168,16 @@ io.on('connection', (socket) => {
         io.emit('scoreboard', (users));
     });
 
-    // socket.on('send-nickname', (nickname) => {
-    //     socket.nickname = nickname;
-    //     io.emit('send-nickname', {
-    //         nickname: socket.nickname
-    //     });
-    // });
+    socket.on('skip-movie', (msg) => {
+        console.log(game)
+        game = game + 1;
+        movie = {
+            img: randomizedData[game].backdrop_path,
+            description: randomizedData[game].overview
+        }
+        io.emit('skip-movie', msg)
+        io.emit('movie', movie);
+    })
 
     socket.on('chat-message', (msg) => {
         io.emit('chat-message', msg);
@@ -169,14 +187,13 @@ io.on('connection', (socket) => {
             msg.msg = `Yeahhhhh ${rightUser} guessed it right!`;
             io.emit('chat-message', msg);
             game = game + 1
-            console.log(game)
             movie = {
                 img: randomizedData[game].backdrop_path,
                 description: randomizedData[game].overview
             }
             users.forEach(user => {
                 if (user.id == socket.id) {
-                    user.score = user.score + 10;
+                    user.score = user.score + 5;
                 }
             });
 

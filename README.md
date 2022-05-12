@@ -136,6 +136,7 @@ When a user disconnects a message will be send that the user is disconnected.
 * Set a nickname
 * Send a chat message
 * Get points when answer is guessed
+* Skip a movie
 
 ## Installation
 
@@ -168,7 +169,6 @@ When a user disconnects a message will be send that the user is disconnected.
 Due to a lack of time, there are a few things that I wanted to add but I couldn't now
 
 * Create rooms
-* Add skip button
 * When the user message includes a part of the title, give the user feedback that they are close to the right answer
 
 ## Assignment

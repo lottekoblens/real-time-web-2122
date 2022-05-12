@@ -4,6 +4,7 @@ if (window.location.pathname === '/game') {
     const chatForm = document.getElementById('chat');
     const input = document.getElementById('input');
     const score = document.getElementById('score');
+    const button = document.getElementById('skip-button');
 
     const username = new URLSearchParams(window.location.search).get('nickname')
 
@@ -70,15 +71,28 @@ if (window.location.pathname === '/game') {
         })
     });
 
-    socket.on('disconnected', (nickname) => {
-        if (nickname === 'transport close') {
-            const item = document.createElement('li');
-            item.textContent = `a user has disconnected`;
-        }
+    button.addEventListener('click', () => {
+        socket.emit('skip-movie')
+    })
+
+    //when the button of skip movie is clicked there will be send a message in the chat
+    socket.on('skip-movie', () => {
         const item = document.createElement('li');
-        item.textContent = `${nickname.nickname} has disconnected`;
+        item.textContent = `The movie is skipped`;
         messages.appendChild(item);
         messages.scrollTop = messages.scrollHeight;
+    });
+
+    socket.on('disconnected', (nickname) => {
+        if (nickname.nickname === 'transport close') {
+            const item = document.createElement('li');
+            item.textContent = `a user has disconnected`;
+        } else {
+            const item = document.createElement('li');
+            item.textContent = `${nickname.nickname} has disconnected`;
+            messages.appendChild(item);
+            messages.scrollTop = messages.scrollHeight;
+        }
     });
 
 }

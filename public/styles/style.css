@@ -139,6 +139,7 @@ section:nth-of-type(2)>form>button:focus {
     position: absolute;
     bottom: 0;
     text-align: left;
+    color: black;
 }
 
 .gamePage section:nth-of-type(3)>h2 {
@@ -151,6 +152,25 @@ section:nth-of-type(2)>form>button:focus {
 
 .gamePage section:nth-of-type(3)>ul>li {
     list-style-type: none;
+}
+
+.gamePage .skip {
+    position: absolute;
+    bottom: 2.3%;
+    left: 60%;
+}
+
+.gamePage .skip button {
+    background: hotpink;
+    border-radius: 0.2em;
+    border: none;
+    padding: 0.7em;
+    color: black;
+}
+
+.gamePage .skip button:hover {
+    cursor: pointer;
+    background: rgb(195, 14, 104);
 }
 
 /*      mobile screen       */
@@ -190,5 +210,11 @@ section:nth-of-type(2)>form>button:focus {
         position: relative;
         bottom: 0;
         text-align: left;
+    }
+
+    .gamePage .skip {
+        position: relative;
+        bottom: 0;
+        /* left: 30%; */
     }
 }
