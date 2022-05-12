@@ -1,5 +1,7 @@
 # Real Time Web
 
+A multiplayer game where player need to be the first one to guess the movie. Go ahead and try it out!
+
 <img src="https://github.com/lottekoblens/real-time-web-2122/blob/main/public/images/movie.gif" width="650">
 
 ## Table of contents
@@ -106,7 +108,7 @@ let data = [];
 
 ## Multi-user support
 
-In socket.io krijg je als gebruiker al een socket ID toegewezen. En zodra de gebruiker op de site komt, stelt hij een nickname in. Alle gebruikers komen daarna in één room terecht (er zijn niet meerdere rooms). Alle users komen dus samen in een spel terecht. Alle users worden op de hoogte gesteld wanneer er een nieuwe gebruiker bij komt. En alle gebruikers krijgen alle berichten die in de chat worden gestuurd binnen.
+In socket.io you as a user are already assigned a socket ID. Once the user gets to the site, he sets up a nickname. All users then end up in room (there are not multiple rooms). So all users end up in a game together. All users will be notified when a new user is added, all users will receive all messages sent in the chat and all users see the scoreboard.
 
 ## Real time events
 
