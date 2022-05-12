@@ -65,6 +65,8 @@ I could prevent this by, for example, setting a character limit, so that people 
 
 ## Data lifecycle
 
+To explain the application in a visual way, I created a data lifecycle. Here you can see what happens on what time of after an event.
+
 <img src="/public/images/dataLifecycle-version2.png" width="650">
 
 ## Data management
