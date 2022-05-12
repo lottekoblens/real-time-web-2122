@@ -50,7 +50,7 @@ The user can guess by typing in the right answer in the chat. The person who gue
 
 For this application I needed the data of movies. So I started looking for an API that has information about popular movies.
 
-### The movieDB API 
+### [The movieDB API](https://www.themoviedb.org/?language=nl) 
 From this API I get the most popular movies. The properties I use are: original_title, original_language, backdrop_path and overview. You can see this also in the section 'Data modeling'.
 
 ### Data modelling
