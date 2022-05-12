@@ -208,7 +208,7 @@ io.on('connection', (socket) => {
             }
         } else {
             imgSrc = randomizedData[game].backdrop_path; // when there is no image src, there should be an image which says no image available
-            if (!imgSrc) {
+            if (imgSrc == 'not found') {
                 movie = {
                     img: `/images/no-image.png`,
                     description: randomizedData[game].overview
