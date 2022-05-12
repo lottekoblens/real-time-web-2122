@@ -234,9 +234,25 @@ io.on('connection', (socket) => {
             msg.msg = `Yeahhhhh ${rightUser} guessed it right!`;
             io.emit('chat-message', msg);
             game = game + 1
-            movie = {
-                img: randomizedData[game].backdrop_path,
-                description: randomizedData[game].overview
+            if (!randomizedData[game]) { // when there is no data, there are no more movies, so that is the end of the game
+                movie = {
+                    img: '/images/theend.png',
+                    description: 'This is the end of the game!'
+                }
+                game = 0
+            } else {
+                imgSrc = randomizedData[game].backdrop_path; // when there is no image src, there should be an image which says no image available
+                if (imgSrc == 'not found') {
+                    movie = {
+                        img: `/images/no-image.png`,
+                        description: randomizedData[game].overview
+                    }
+                } else {
+                    movie = {
+                        img: `https://image.tmdb.org/t/p/w500/${imgSrc}`,
+                        description: randomizedData[game].overview
+                    }
+                }
             }
             users.forEach(user => {
                 if (user.id == socket.id) {
