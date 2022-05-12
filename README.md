@@ -19,6 +19,7 @@
     - [Userconnect](#userconnect)
     - [Chat-message](#chat-message)
     - [Scoreboard](#scoreboard)
+    - [Skip-movie](#skip-movie)
     - [Disconnect](#disconnect)
   - [Features](#features)
   - [Installation](#installation)
@@ -64,7 +65,7 @@ I could prevent this by, for example, setting a character limit, so that people 
 
 ## Data lifecycle
 
-<img src="/public/images/datalifecycle.png" width="650">
+<img src="/public/images/dataLifecycle-version2.png" width="650">
 
 ## Data management
 
@@ -125,6 +126,10 @@ The chat-message event is called multiple times:
 ### Scoreboard
 
 This event is called when a user sends the right answer in the chat. And the user who gave the right answer will get points which will be displayed on the scoreboard.
+
+### Skip-movie
+
+The skip-movie event is called when the user clicks on the button. This adds one to game so that the next movie will be displayed.
 
 ### Disconnect
 

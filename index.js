@@ -141,8 +141,8 @@ io.on('connection', (socket) => {
             nickname: nickname,
             score: 0,
             id: socket.id
-        });
-        io.emit('scoreboard', (users));
+        }); // add user to users array
+        io.emit('scoreboard', (users)); // emit scoreboard when new user is connected
     })
 
     let movie = {
@@ -169,8 +169,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('skip-movie', (msg) => {
-        console.log(game)
-        game = game + 1;
+        game = game + 1; // add one to game to go to next movie
         movie = {
             img: randomizedData[game].backdrop_path,
             description: randomizedData[game].overview
