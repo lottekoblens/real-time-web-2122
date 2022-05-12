@@ -145,19 +145,19 @@ io.on('connection', (socket) => {
         io.emit('scoreboard', (users)); // emit scoreboard when new user is connected
     })
 
-    if (!randomizedData[game]) {
-        let movie = {
-            img: '/public/images/theend.png',
-            description: 'This is the end of the game!'
-        }
-        io.emit('movie', movie);
-    } else {
-        let movie = {
-            img: randomizedData[game].backdrop_path,
-            description: randomizedData[game].overview
-        }
-        io.emit('movie', movie);
-    }
+    // if (!randomizedData[game]) {
+    //     let movie = {
+    //         img: '/public/images/theend.png',
+    //         description: 'This is the end of the game!'
+    //     }
+    //     io.emit('movie', movie);
+    // } else {
+    //     let movie = {
+    //         img: randomizedData[game].backdrop_path,
+    //         description: randomizedData[game].overview
+    //     }
+    //     io.emit('movie', movie);
+    // }
 
     if (!randomizedData[game]) { // when there is no data, there are no more movies, so that is the end of the game
         movie = {
@@ -207,6 +207,7 @@ io.on('connection', (socket) => {
                 img: '/images/theend.png',
                 description: 'This is the end of the game!'
             }
+            game = 0
         } else {
             imgSrc = randomizedData[game].backdrop_path; // when there is no image src, there should be an image which says no image available
             if (imgSrc == 'not found') {
