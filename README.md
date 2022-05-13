@@ -1,41 +1,41 @@
-# Real Time Web
+# :computer: Real Time Web
 
 A multiplayer game where player need to be the first one to guess the movie. Go ahead and try it out!
 
 <img src="https://github.com/lottekoblens/real-time-web-2122/blob/main/public/images/movie.gif" width="650">
 
-## Table of contents
-- [Real Time Web](#real-time-web)
-  - [Table of contents](#table-of-contents)
-  - [Live demo](#live-demo)
-  - [Concept](#concept)
-  - [External data source](#external-data-source)
+## :clipboard: Table of contents
+- [:computer: Real Time Web](#computer-real-time-web)
+  - [:clipboard: Table of contents](#clipboard-table-of-contents)
+  - [:computer: Live demo](#computer-live-demo)
+  - [:bulb: Concept](#bulb-concept)
+  - [:floppy_disk: External data source](#floppy_disk-external-data-source)
     - [The movieDB API](#the-moviedb-api)
     - [Data modelling](#data-modelling)
   - [Proof of concept 2: spike solution](#proof-of-concept-2-spike-solution)
-  - [Data lifecycle](#data-lifecycle)
-  - [Data management](#data-management)
-  - [Multi-user support](#multi-user-support)
-  - [Real time events](#real-time-events)
+  - [:file_folder: Data lifecycle](#file_folder-data-lifecycle)
+  - [:file_folder: Data management](#file_folder-data-management)
+  - [:busts_in_silhouette: Multi-user support](#busts_in_silhouette-multi-user-support)
+  - [:globe_with_meridians: Real time events](#globe_with_meridians-real-time-events)
     - [Connection](#connection)
     - [Userconnect](#userconnect)
     - [Chat-message](#chat-message)
     - [Scoreboard](#scoreboard)
     - [Skip-movie](#skip-movie)
     - [Disconnect](#disconnect)
-  - [Features](#features)
-  - [Installation](#installation)
-  - [Wishlist](#wishlist)
-  - [Assignment](#assignment)
+  - [:heavy_check_mark: Features](#heavy_check_mark-features)
+  - [:wrench: Installation](#wrench-installation)
+  - [:fast_forward: Wishlist](#fast_forward-wishlist)
+  - [:clipboard: Assignment](#clipboard-assignment)
     - [Goals](#goals)
     - [Grading](#grading)
-  - [License](#license)
+  - [:bookmark: License](#bookmark-license)
 
-## Live demo
+## :computer: Live demo
 
 [Live demo](https://chat-people-socket.herokuapp.com/)
 
-## Concept
+## :bulb: Concept
 
 At first we had to think of multiple concepts and made some scetches as you can see below.
 
@@ -48,7 +48,7 @@ The user can guess by typing in the right answer in the chat. The person who gue
 
 <img src="/public/images/concept.jpg" width="650">
 
-## External data source
+## :floppy_disk: External data source
 
 For this application I needed the data of movies. So I started looking for an API that has information about popular movies.
 
@@ -65,13 +65,13 @@ I started coding and thought about the _spike solution_. This means that I keep 
 
 I could prevent this by, for example, setting a character limit, so that people can't send an endless message that could cause the app to crash. 
 
-## Data lifecycle
+## :file_folder: Data lifecycle
 
 To explain the application in a visual way, I created a data lifecycle. Here you can see what happens on what time of after an event.
 
 <img src="/public/images/dataLifecycle-version2.png" width="650">
 
-## Data management
+## :file_folder: Data management
 
 For data management I use arrays. I save the data of the users in one array. It's saved like this:
 ```js
@@ -106,11 +106,11 @@ let data = [];
         })
 ```
 
-## Multi-user support
+## :busts_in_silhouette: Multi-user support
 
 In socket.io you as a user are already assigned a socket ID. Once the user gets to the site, he sets up a nickname. All users then end up in room (there are not multiple rooms). So all users end up in a game together. All users will be notified when a new user is added, all users will receive all messages sent in the chat and all users see the scoreboard.
 
-## Real time events
+## :globe_with_meridians: Real time events
 
 ### Connection
 
@@ -139,7 +139,7 @@ The skip-movie event is called when the user clicks on the button. This adds one
 
 When a user disconnects a message will be send that the user is disconnected.
 
-## Features
+## :heavy_check_mark: Features
 
 * Play a game with other players
 * Set a nickname
@@ -147,7 +147,7 @@ When a user disconnects a message will be send that the user is disconnected.
 * Get points when answer is guessed
 * Skip a movie
 
-## Installation
+## :wrench: Installation
 
 1. Clone this repository by putting this in your terminal:
 
@@ -174,14 +174,15 @@ When a user disconnects a message will be send that the user is disconnected.
 
 `npm start`
 
-## Wishlist
+## :fast_forward: Wishlist
 Due to a lack of time, there are a few things that I wanted to add but I couldn't now
 
 * Create rooms
-* When the user message includes a part of the title, give the user feedback that they are close to the right answer
-* Store data of points from users in database
+* When the user message includes a part of the title, give the user feedback that they are close to the right answer.
+* Store data of points from users in database.
+* Give user feedback when the connection can't be made.
 
-## Assignment
+## :clipboard: Assignment
 
 During this course you will learn how to build a real-time application. You will learn techniques to setup an open connection between the client and the server. This will enable you to send data in real-time both ways, at the same time.
 
@@ -203,6 +204,6 @@ Your efforts will be graded using a single point rubric (see below). You will ha
 |  | *Data management* The server maintains a data model and each client is continuously updated with the correct data. |  |
 |  | *Multi-user support* Multiple clients can connect to the server. Interaction works as expected and is not dependent on the number of clients. You can explain how your app approaches this. |  |
 
-## License
+## :bookmark: License
 
 [MIT](https://github.com/lottekoblens/real-time-web-2122/blob/main/LICENSE)
